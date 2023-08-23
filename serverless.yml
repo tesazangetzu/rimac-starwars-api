@@ -1,16 +1,17 @@
 service: starwars-api
 provider:
   name: aws
+  profile: eduardo-mio
   runtime: nodejs16.x
   stage: dev
-  region: us-east-2
+  region: us-east-1
   memorySize: 128
   apiGateway:
     binaryMediaTypes:
       - "*/*"
 functions:
   app:
-    handler: src/app.handler
+    handler: src/index.handler
     events:
       - http:
           path: /

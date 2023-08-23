@@ -1,8 +1,10 @@
 const { Router } = require("express");
-const starWarsController = require("../controllers/starWars.controller.js");
+const StarWarsController = require("../controllers/starWars.controller.js");
 const router = Router();
 
-router.get("/", starWarsController.getAll);
-router.post("/", starWarsController.create);
+router.post("/import", StarWarsController.import);
+router.get("/people/:uuid", StarWarsController.show);
+router.get("/people/", StarWarsController.getAll);
+router.post("/people", StarWarsController.create);
 
 module.exports = router;

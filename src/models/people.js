@@ -2,7 +2,7 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  const { INTEGER, UUIDV4, STRING, DATE } = DataTypes;
+  const { INTEGER, UUIDV4, STRING, DATE, ARRAY } = DataTypes;
   class PeopleModel extends Model {}
 
   PeopleModel.init(
@@ -10,21 +10,20 @@ module.exports = (sequelize, DataTypes) => {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       uuid: UUIDV4,
 
-      birth_year: STRING,
-      eye_color: STRING,
-      films: STRING,
+      name: STRING,
+      birthYear: STRING,
+      eyeColor: STRING,
       gender: STRING,
-      hair_color: STRING,
+      hairColor: STRING,
       height: STRING,
       homeworld: STRING,
       mass: STRING,
-      name: STRING,
-      skin_color: STRING,
-      species: STRING,
-      starships: STRING,
+      skinColor: STRING,
       url: STRING,
+      films: STRING,
+      species: STRING,
       vehicles: STRING,
-
+      starships: STRING,
       created: DATE,
       edited: DATE,
 

@@ -2,34 +2,77 @@ const models = require("../models");
 const People = models.people;
 const { v4: uuid } = require("uuid");
 
+const arrFields = [
+  "uuid",
+  "name",
+  "birthYear",
+  "eyeColor",
+  "gender",
+  "hairColor",
+  "height",
+  "homeworld",
+  "mass",
+  "skinColor",
+  "url",
+  "films",
+  "species",
+  "starships",
+  "vehicles",
+  "created",
+  "edited",
+];
+
 class StarWarsRepository {
+  getAll(query) {
+    let page, limit, order;
+    ({ page, limit, order } = query);
+    limit = parseInt(limit) || 10;
+    page = parseInt(page);
+
+    return People.findAll({
+      attributes: arrFields,
+      order: [["id", order || "asc"]],
+      offset: page ? --page * limit : undefined,
+      limit,
+      raw: true,
+    });
+  }
+
+  show(uuid) {
+    return People.findOne({
+      attributes: arrFields,
+      where: { uuid },
+      raw: true,
+    });
+  }
+
   create({
-    name,
-    height,
-    mass,
-    hair_color,
-    skin_color,
-    eye_color,
     birth_year,
-    gender,
-    homeworld,
+    eye_color,
     films,
+    gender,
+    hair_color,
+    height,
+    homeworld,
+    mass,
+    name,
+    skin_color,
     species,
-    vehicles,
     starships,
+    url,
+    vehicles,
     created,
     edited,
-    url,
   }) {
     return People.create({
       uuid: uuid(),
       name,
       height,
       mass,
-      hair_color,
-      skin_color,
-      eye_color,
-      birth_year,
+      hairColor: hair_color,
+      skinColor: skin_color,
+      eyeColor: eye_color,
+      birthYear: birth_year,
       gender,
       homeworld,
       films: typeof films != String ? films.toString() : films,
