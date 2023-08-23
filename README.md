@@ -33,4 +33,8 @@ or
 
 > npm run dev
 
+or Start to dev
+
+> sls deploy
+
 ### Note: Before starting project deploy a database for mysql at RDS or local enviroment

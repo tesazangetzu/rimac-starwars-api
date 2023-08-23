@@ -68,3 +68,4 @@ log
 server.config.js
 .env.save
 .DS_Store
+.serverless
